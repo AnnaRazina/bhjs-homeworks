@@ -5,4 +5,6 @@ const countdown = function () {
 
 let timerId = setInterval(countdown, 1000);
 
-setTimeout(() => {clearInterval(timerId); alert("Вы победили в конкурсе!")}, 59000);
+setTimeout(() => {clearInterval(timerId); 
+    alert("Вы победили в конкурсе!");
+    timer.textContent = 0}, 60000);
