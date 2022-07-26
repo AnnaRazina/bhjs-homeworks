@@ -1,5 +1,4 @@
 let getMenuLink = Array.from(document.querySelectorAll(".menu__link"));
-
 getMenuLink.forEach(link => link.addEventListener("click", (event) => {
     let activeMenuSub = document.querySelector(".menu_active");
     if (event.target.closest(".menu__item").querySelector(".menu_sub").classList.contains("menu_active")) {
@@ -14,4 +13,4 @@ getMenuLink.forEach(link => link.addEventListener("click", (event) => {
         event.preventDefault();
         link.closest(".menu__item").querySelector(".menu_sub").classList.add("menu_active")
     }
-}))
+}));
