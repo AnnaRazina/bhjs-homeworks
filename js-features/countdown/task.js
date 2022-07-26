@@ -1,9 +1,13 @@
+let HTMLTimer = document.getElementById("timer");
+let timer = 59;
 const countdown = function () {
-    let timer = document.getElementById("timer");
-    timer.textContent -= 1; 
+    if(timer === 0) {
+        clearInterval(timerId);
+        alert("Вы победили в конкурсе!");
+        return
+    }
+    timer -= 1;  
+    HTMLTimer.textContent = timer;  
 }
-let timerId = setInterval(countdown, 1000);
 
-setTimeout(() => {clearInterval(timerId); 
-    alert("Вы победили в конкурсе!");
-    timer.textContent = 0}, 60000);
+let timerId = setInterval(countdown, 1000);
