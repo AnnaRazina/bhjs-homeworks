@@ -9,7 +9,7 @@ console.log(dropdownList);
 
 
 
-//if (dropdownList.classList.contains("dropdown__list_active")) {
+if (dropdownList.classList.contains("dropdown__list_active")) {
    
     dropdownItem.forEach(element => {element.addEventListener("click", (event) => {
         let href = event.target.getAttribute('href');
@@ -17,10 +17,10 @@ console.log(element)
 })
     
 })
-//}
+}
 
 dropdownValue[0].addEventListener("click", () => {
-    //if(dropdownItem.length > 0) {
+    if(dropdownItem.length > 0) {
      dropdownList.classList.toggle("dropdown__list_active")
-   // }
+    }
  })
