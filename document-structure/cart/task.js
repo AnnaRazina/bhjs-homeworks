@@ -8,10 +8,10 @@ let productsQuantityValue = () => {
         el.addEventListener("click", (event) => {
             if (event.target.classList.contains("product__quantity-control_dec")) {
                 if (productQuantityValue.classList.contains("product__quantity-value") && productQuantityValue.textContent > 1) {
-                    productQuantityValue.innerHTML = productQuantityValue.textContent - 1
+                    productQuantityValue.innerHTML = parseInt(productQuantityValue.textContent) - 1
                 } 
             } else  if (event.target.classList.contains("product__quantity-control_inc")) {
-                productQuantityValue.innerHTML = +productQuantityValue.textContent + 1
+                productQuantityValue.innerHTML = parseInt(productQuantityValue.textContent) + 1
             }
         })
         
@@ -34,7 +34,7 @@ let productsQuantityValue = () => {
                 let coincidences = arrCartProduct.find(item => item.getAttribute("id") === dataId);
                 if (arrCartProduct.length > 0 && coincidences) {
                     let cartProductCount = coincidences.lastElementChild;
-                    cartProductCount.textContent = (+cartProductCount.textContent) + (+productQuantityValue.textContent);
+                    cartProductCount.textContent = parseInt(cartProductCount.textContent) + parseInt(productQuantityValue.textContent);
                     return
                 }
                 cartProducts.appendChild(cartProduct)
