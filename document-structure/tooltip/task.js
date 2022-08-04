@@ -4,12 +4,19 @@ hasTooltip.forEach(el =>{
     tooLtip.classList.add("tooltip");
     el.after(tooLtip);
     tooLtip.textContent = `${el.getAttribute("title")}`;
-    
+   
+    /*let tooLtipabsolute = el.nextSibling;
+    tooLtipabsolute.style.position = "absolute";
+    console.log(tooLtipabsolute);*/
+
+
     el.addEventListener("click", (event) => {
     event.preventDefault();
     let posicion = el.getBoundingClientRect();
-    el.nextSibling.setAttribute("style", `left: ${posicion.left}px; top: ${posicion.top + 20}px`);
-
+    
+    
+    el.nextSibling.setAttribute("style", `left: ${posicion.left}px; top: ${posicion.top + posicion.height}px;`);
+   
     if (el.nextSibling.classList.contains("tooltip_active")) {
         el.nextSibling.classList.remove("tooltip_active")
     } else if (document.querySelector(".tooltip_active")) {
