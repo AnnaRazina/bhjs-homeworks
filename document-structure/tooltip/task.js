@@ -11,15 +11,15 @@ function getPosicion (elem) {
 }
 
 hasTooltip.forEach(el => {
+    let tooltip = document.createElement("div");
+    tooltip.classList.add("tooltip");
+    tooltip.append(el.title);
+    el.append(tooltip);
+
     el.addEventListener("click", (event) => {
         event.preventDefault();
-        let tooltip = document.createElement("div");
         let posicion = getPosicion(el);
 
-        tooltip.classList.add("tooltip");
-        tooltip.append(el.title);
-        el.append(tooltip);
-    
         tooltip.style.left = posicion.left + "px";
         tooltip.style.top = posicion.bottom + "px";
         tooltip.style.position = "absolute";
