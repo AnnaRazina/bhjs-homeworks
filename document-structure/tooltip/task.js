@@ -1,28 +1,36 @@
 let hasTooltip = Array.from(document.querySelectorAll(".has-tooltip"));
-hasTooltip.forEach(el =>{ 
-    let tooLtip = document.createElement("div");
-    tooLtip.classList.add("tooltip");
-    el.after(tooLtip);
-    tooLtip.textContent = `${el.getAttribute("title")}`;
-   
-    /*let tooLtipabsolute = el.nextSibling;
-    tooLtipabsolute.style.position = "absolute";
-    console.log(tooLtipabsolute);*/
 
-
-    el.addEventListener("click", (event) => {
-    event.preventDefault();
-    let posicion = el.getBoundingClientRect();
-    
-    
-    el.nextSibling.setAttribute("style", `left: ${posicion.left}px; top: ${posicion.top + posicion.height}px;`);
-   
-    if (el.nextSibling.classList.contains("tooltip_active")) {
-        el.nextSibling.classList.remove("tooltip_active")
-    } else if (document.querySelector(".tooltip_active")) {
-        document.querySelector(".tooltip_active").classList.remove("tooltip_active");
-        el.nextSibling.classList.add("tooltip_active")
-    } else {
-        tooLtip.classList.add("tooltip_active");
+function getPosicion (elem) {
+    let block = elem.getBoundingClientRect();
+    return {
+        top: block.top + window.pageYOffset,
+        bottom: block.bottom + window.pageYOffset,
+        right: block.right + window.pageXOffset,
+        left: block.left + window.pageXOffset,
     }
-})})
+}
+
+hasTooltip.forEach(el => {
+    el.addEventListener("click", (event) => {
+        event.preventDefault();
+        let tooltip = document.createElement("div");
+        let posicion = getPosicion(el);
+
+        tooltip.classList.add("tooltip");
+        tooltip.append(el.title);
+        el.append(tooltip);
+    
+        tooltip.style.left = posicion.left + "px";
+        tooltip.style.top = posicion.bottom + "px";
+        tooltip.style.position = "absolute";
+
+        if (el.firstElementChild.classList.contains("tooltip_active")) {
+            el.firstElementChild.classList.remove("tooltip_active")
+        } else if (document.querySelector(".tooltip_active")) {
+            document.querySelector(".tooltip_active").classList.remove("tooltip_active");
+            el.firstElementChild.classList.add("tooltip_active")
+       } else {
+            tooltip.classList.add("tooltip_active");
+        }
+    })
+})
